@@ -1,0 +1,5 @@
+[jenkins]
+jenkins.example.com ansible_user=ansible
+
+[jenkins:vars]
+jenkins_hostname=jenkins.example.com

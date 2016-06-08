@@ -1,0 +1,4 @@
+- src: geerlingguy.jenkins
+- src: manala.git
+- src: nodesource.node
+- src: JhovaniC.ruby

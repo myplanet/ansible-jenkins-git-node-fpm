@@ -1,0 +1,31 @@
+- hosts: all
+  become: true
+
+  pre_tasks:
+    - name: Install packages required for fpm
+      apt:
+        name:
+          - ruby-dev
+          - gcc
+          - make
+        state: present
+    - name: Make sure /opt exists for geerlingguy.jenkins
+      file: path=/opt state=directory
+
+  roles:
+    - role: geerlingguy.jenkins
+
+    - role: manala.git
+
+    - role: nodesource.node
+      nodejs_version: "4"
+
+    - role: JhovaniC.ruby
+      ruby_install_gems: [ fpm ]
+
+  tasks:
+    - name: Generate RSA key for jenkins
+      user: name=jenkins generate_ssh_key=yes
+
+    - name: Install Ansible
+      apt: name=ansible state=present
